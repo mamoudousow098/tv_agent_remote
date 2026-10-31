@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Télécommande Agent</string>
+    <string name="accessibility_description">Permet à l\'application Télécommande de votre téléphone de piloter cette TV sur le Wi-Fi (flèches, OK, Retour, Accueil, saisie de texte). Seul un téléphone appairé avec le code affiché peut envoyer des commandes.</string>
+</resources>

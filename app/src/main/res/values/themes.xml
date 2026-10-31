@@ -1,0 +1,4 @@
+<resources>
+    <!-- Thème du framework : aucune dépendance AndroidX nécessaire -->
+    <style name="Theme.Agent" parent="@android:style/Theme.DeviceDefault.NoActionBar" />
+</resources>
