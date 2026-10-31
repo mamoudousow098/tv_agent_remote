@@ -2,12 +2,14 @@ package sn.tvremote.agent
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import java.net.Inet4Address
 import java.net.NetworkInterface
 
@@ -41,6 +43,8 @@ class SetupActivity : Activity() {
         pairStatus = findViewById(R.id.pairStatus)
         // Même SharedPreferences que le service : le code s'affiche même avant activation
         pairing = Pairing(this)
+
+        findViewById<Button>(R.id.openAppInfo).setOnClickListener { openAndroidAppInfo() }
 
         findViewById<Button>(R.id.openSettings).setOnClickListener {
             try {
@@ -90,6 +94,30 @@ class SetupActivity : Activity() {
         } else {
             "Saisissez ce code dans l'application du téléphone."
         }
+    }
+
+    /**
+     * Ouvre l'écran « Infos sur l'appli » des Réglages Android d'origine.
+     *
+     * La surcouche du fabricant affiche sa propre fenêtre, sans le menu ⋮ qui
+     * contient « Autoriser les paramètres restreints » (Android 13+). On vise
+     * donc explicitement l'application Réglages d'Android, puis, en repli,
+     * n'importe quelle application qui gère cet intent.
+     */
+    private fun openAndroidAppInfo() {
+        val uri = Uri.fromParts("package", packageName, null)
+        val stock = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, uri)
+            .setPackage("com.android.settings")
+        val any = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, uri)
+        for (intent in listOf(stock, any)) {
+            try {
+                startActivity(intent)
+                return
+            } catch (e: Exception) {
+                // essai suivant
+            }
+        }
+        Toast.makeText(this, "Écran d'infos de l'application introuvable", Toast.LENGTH_LONG).show()
     }
 
     /** Première adresse IPv4 non locale (Wi-Fi ou Ethernet). */

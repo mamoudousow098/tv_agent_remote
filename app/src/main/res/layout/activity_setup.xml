@@ -36,12 +36,22 @@
             android:textColor="#FFFFFF"
             android:textSize="26sp" />
 
+        <!-- Android 13+ : appli installée depuis un APK → « Paramètre restreint ».
+             Il faut d'abord l'autoriser depuis l'écran d'infos d'Android (menu ⋮). -->
+        <Button
+            android:id="@+id/openAppInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="a. Infos de l'appli (⋮ → Autoriser les paramètres restreints)"
+            android:textSize="20sp" />
+
         <Button
             android:id="@+id/openSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Ouvrir les réglages d'accessibilité"
+            android:text="b. Ouvrir les réglages d'accessibilité"
             android:textSize="20sp" />
 
         <!-- Étape 2 : appairage -->
