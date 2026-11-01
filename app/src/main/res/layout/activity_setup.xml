@@ -54,6 +54,31 @@
             android:text="b. Ouvrir les réglages d'accessibilité"
             android:textSize="20sp" />
 
+        <!-- Repli : débogage sans fil (ADB) si le menu ⋮ est introuvable -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Si le menu ⋮ est introuvable : débogage sans fil"
+            android:textColor="#9FB3C8"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/openAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="c. À propos (7 appuis sur « Numéro de build »)"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/openDevOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="d. Options pour les développeurs"
+            android:textSize="18sp" />
+
         <!-- Étape 2 : appairage -->
         <TextView
             android:layout_width="wrap_content"

@@ -45,6 +45,12 @@ class SetupActivity : Activity() {
         pairing = Pairing(this)
 
         findViewById<Button>(R.id.openAppInfo).setOnClickListener { openAndroidAppInfo() }
+        findViewById<Button>(R.id.openAbout).setOnClickListener {
+            openStockSettings(Settings.ACTION_DEVICE_INFO_SETTINGS)
+        }
+        findViewById<Button>(R.id.openDevOptions).setOnClickListener {
+            openStockSettings(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
+        }
 
         findViewById<Button>(R.id.openSettings).setOnClickListener {
             try {
@@ -118,6 +124,22 @@ class SetupActivity : Activity() {
             }
         }
         Toast.makeText(this, "Écran d'infos de l'application introuvable", Toast.LENGTH_LONG).show()
+    }
+
+    /**
+     * Ouvre un écran des Réglages Android d'origine (et non la surcouche du
+     * fabricant), avec repli sur n'importe quelle application qui gère l'action.
+     */
+    private fun openStockSettings(action: String) {
+        for (intent in listOf(Intent(action).setPackage("com.android.settings"), Intent(action))) {
+            try {
+                startActivity(intent)
+                return
+            } catch (e: Exception) {
+                // essai suivant
+            }
+        }
+        Toast.makeText(this, "Écran introuvable sur cette TV", Toast.LENGTH_LONG).show()
     }
 
     /** Première adresse IPv4 non locale (Wi-Fi ou Ethernet). */
