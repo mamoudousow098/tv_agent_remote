@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Serveur HTTP local (le téléphone se connecte à la TV) -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Diagnostic : voir toutes les applis installées (Android 11+ les masque sinon).
+         Sans conséquence ici : appli installée manuellement, pas publiée sur le Play Store. -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
 
     <!-- Installation possible sur TV : pas d'écran tactile, lanceur Leanback facultatif -->
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
@@ -28,6 +35,11 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Diagnostic : liste des applications installées -->
+        <activity
+            android:name=".AppsActivity"
+            android:exported="false" />
 
         <!-- Service d'accessibilité : exécute les touches ET héberge le serveur HTTP.
              Android le maintient en vie tant qu'il est activé, et le relance au démarrage. -->

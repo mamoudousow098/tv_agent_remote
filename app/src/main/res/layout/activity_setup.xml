@@ -79,6 +79,14 @@
             android:text="d. Options pour les développeurs"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/openApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="e. Lister les applications installées"
+            android:textSize="18sp" />
+
         <!-- Étape 2 : appairage -->
         <TextView
             android:layout_width="wrap_content"

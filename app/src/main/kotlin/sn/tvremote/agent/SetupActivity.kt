@@ -51,6 +51,9 @@ class SetupActivity : Activity() {
         findViewById<Button>(R.id.openDevOptions).setOnClickListener {
             openStockSettings(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
         }
+        findViewById<Button>(R.id.openApps).setOnClickListener {
+            startActivity(Intent(this, AppsActivity::class.java))
+        }
 
         findViewById<Button>(R.id.openSettings).setOnClickListener {
             try {
